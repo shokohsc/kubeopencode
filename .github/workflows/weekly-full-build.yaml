@@ -11,7 +11,7 @@ on:
 env:
   GO_VERSION: "1.26"
   IMG_REGISTRY: ghcr.io
-  IMG_ORG: kubeopencode
+  IMG_ORG: ${{ github.repository_owner }}
   IMG_NAME: kubeopencode
 
 jobs:
@@ -198,4 +198,4 @@ jobs:
         run: |
           mkdir -p dist
           helm package charts/kubeopencode -d dist/
-          helm push dist/kubeopencode-*.tgz oci://ghcr.io/kubeopencode/helm-charts
+          helm push dist/kubeopencode-*.tgz oci://ghcr.io/${{ env.IMG_ORG }}/helm-charts
